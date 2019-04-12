@@ -103,3 +103,11 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         >>> 3
     """
     pass
+
+
+def task_11_create_list_of_random_characters() -> List[str]:
+    """
+    Create list of 20 elements where each element is random letter from latin alphabet
+
+    """
+    pass

@@ -11,7 +11,8 @@ from build_in_methods_iterators.homework import (
     task_1_fix_names_start_letter,
     task_2_remove_dict_fields,
     task_3_find_item_via_value,
-    task_10_generator_of_simple_numbers
+    task_10_generator_of_simple_numbers,
+    task_11_create_list_of_random_characters
 )
 
 
@@ -102,12 +103,16 @@ class MaxTestCases(unittest.TestCase):
 
 class ListComprehensionCases(unittest.TestCase):
 
-    def test_task_10(self):
-        expected_result = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,
-                           97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149]
-        actual_result = task_10_generator_of_simple_numbers()
-        for i in expected_result:
-            self.assertEqual(i, next(actual_result))
+    def test_task_11_value_range(self):
+        import string
+        actual_result = task_11_create_list_of_random_characters()
+        possible_values = string.ascii_lowercase
+        for c in actual_result:
+            self.assertIn(c, possible_values)
+
+    def test_task_11_length(self):
+        actual_result = task_11_create_list_of_random_characters()
+        self.assertEqual(len(actual_result), 20)
 
 
 class DictComprehension(unittest.TestCase):
@@ -165,8 +170,12 @@ class DictComprehension(unittest.TestCase):
 
 class GeneratorTestCases(unittest.TestCase):
 
-    def test_(self):
-        pass
+    def test_task_10(self):
+        expected_result = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,
+                           97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149]
+        actual_result = task_10_generator_of_simple_numbers()
+        for i in expected_result:
+            self.assertEqual(i, next(actual_result))
 
 
 class FilterTestCases(unittest.TestCase):
