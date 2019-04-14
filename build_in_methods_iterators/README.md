@@ -1,5 +1,16 @@
 # PLAN OF THE LECTION
 
+What will be useful
+```.env
+
+git fetch -ap
+ 
+git checkout python_functionality
+
+git pull origin python_functionality 
+
+```
+
 # Comprehension
 
 ### List comprehension
