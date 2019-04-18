@@ -9,12 +9,6 @@ ST = Dict[str, Union[str, int]]
 DT = List[ST]
 
 
-def format_item(item):
-    if 'name' in item:
-        item['name'] = item.get('name').capitalize()
-    return item
-
-
 def task_1_fix_names_start_letter(data: DT) -> DT:
     """
     Make all `names` field in list of students to start from upper letter
@@ -23,13 +17,7 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
-    return list(map(format_item, data))
-
-
-def rm_item_keys(item, keys):
-    for key in keys:
-        item.pop(key, None)
-    return item
+    return [{key: value.capitalize() if key == 'name' else value for key, value in d.items()} for d in data]
 
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
@@ -40,6 +28,12 @@ def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
        remove_dict_field([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 'age')
         >>> [{'name': 'Alex'}, {'name': 'denys'}]
     """
+
+    def rm_item_keys(item, keys):
+        for key in keys:
+            item.pop(key, None)
+        return item
+
     return [rm_item_keys(item, redundant_keys) for item in data]
 
 
@@ -57,7 +51,6 @@ def task_4_min_value_integers(data: List[int]) -> int:
     """
     Find and return minimum value from list
     """
-
     return min(data, default=None)
 
 
@@ -107,21 +100,6 @@ def task_9_sum_characters_positions(text: str) -> int:
     return sum(map(lambda x: ord(x), text))
 
 
-def is_prime(number):
-    for i in range(2, number):
-        if number % i == 0:
-            return False
-    return True
-
-
-def generator_of_prime_numbers():
-    number = 2
-    while number <= 200:
-        if is_prime(number):
-            yield number
-        number += 1
-
-
 def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
     """
     Return generator of simple numbers
@@ -133,6 +111,20 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
+
+    def is_prime(number):
+        for i in range(2, number):
+            if number % i == 0:
+                return False
+        return True
+
+    def generator_of_prime_numbers():
+        number = 2
+        while number <= 200:
+            if is_prime(number):
+                yield number
+            number += 1
+
     return generator_of_prime_numbers()
 
 
