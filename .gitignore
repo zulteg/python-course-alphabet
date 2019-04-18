@@ -5,3 +5,6 @@
 __pycache__
 
 env
+
+.DS_Store
+**/*_for_test.py
