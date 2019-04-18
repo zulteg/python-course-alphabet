@@ -1,76 +1,8 @@
 # PLAN OF THE LECTION
 
+# RDBMS
+
 # SQL basic commands
-
-### Introduction into PosgreSQL
-
-- Console client psql
-    - Create user with password
-    - Create database
-    - Grant all privileges to the db for created user
-
-### Data structure
-
-- create/delete databases
-
-- create/delete tables
-
-- Data types in PostgreSQL
-
-- Column and table constraints
-
-- External keys
-
-- Change tables
-
-
-### Data operations
-
-- INSERT
-
-- SELECT
-
-- WHERE
-
-- UPDATE
-
-- DELETE
-
-
-### Requests
-
-- DISTINCT. Selection of unique values
-
-- ORDER BY. Sorting
-
-- GROUP BY
-
-- HAVING
-
-- Getting a range of lines. LIMIT and OFFSET
-
-- Filter operators
-
-- Aggregate functions
-
-- Subqueries
-
-
-### Joining Tables
-
-- Implicit table join
-
-- INNER JOIN
-
-- OUTER JOIN and CROSS JOIN
-
-- Grouping in compounds
-
-- Union of sets. UNION
-
-- Set difference. EXCEPT
-
-- Intersection of many. INTERSECT
 
 # Integration with python
 
