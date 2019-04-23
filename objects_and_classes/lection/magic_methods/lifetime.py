@@ -1,11 +1,11 @@
 import time
 
-from utils import describe_object
+from lection.utils import describe_object
 
 
 class Programmer:
 
-    def __init__(self, name, language="Python", position="Junior"):
+    def __init__(self, name, language="Python", position="Junior") -> None:
         print("Fill out programmer with attributes")
         self.name = name
         self.language = language
@@ -32,8 +32,8 @@ class Programmer:
         print("Bring back coffee from this animal")
         self.enough_coffee = False
 
-    # def __del__(self):
-    #     print(f"Programmer go to sleep")
+    def __del__(self):
+        print(f"Programmer go to sleep")
 
     def work(self):
         if not self.enough_coffee:
@@ -44,34 +44,41 @@ class Programmer:
             time.sleep(1)
             print(f" {self.name} is working")
 
-    def __str__(self):
-        """
-        Main goal of __str__ is to be readable
-        Returns:
-            Readable string
-        """
-        return f"Hello. My name is {self.name} and I am {self.language} {self.position} developer"
-
-    def __repr__(self):
-        # C type variant
-        # return f"{self.__module__}.{type(self)} object at {hex(id(self))}>"
-        # Variant with eval
-        return f"Programmer(name='{self.name}')"
+    # def __str__(self):
+    #     """
+    #     Main goal of __str__ is to be readable
+    #     Returns:
+    #         Readable string
+    #     """
+    #     return f"Hello. My name is {self.name} and I am {self.language} {self.position} developer"
+    #
+    # def __repr__(self):
+    #     # C type variant
+    #     # return f"{self.__module__}.{type(self)} object at {hex(id(self))}>"
+    #     # Variant with eval
+    #     return f"Programmer(name='{self.name}')"
 
 
 if __name__ == "__main__":
     # Create instance of Programmer
     programmer = Programmer(name="Anton")
 
-    # Lets look what it have
-    print(describe_object("programmer", programmer))
+    print("Before", programmer.enough_coffee)
+    with programmer:
+        # our code
+        print("Until", programmer.enough_coffee)
 
-    # Lets see how it is converted to string
-    print(f"{programmer}")
-    print(programmer)
+    print("After", programmer.enough_coffee)
 
-    # Lets see repr
-    res = repr(programmer)
-    print(res)
-    recover_programmer = eval(res)
-    print(programmer.position)
+    # # Lets look what it have
+    # print(describe_object("programmer", programmer))
+    #
+    # # Lets see how it is converted to string
+    # print(f"{programmer}")
+    # print(programmer)
+    #
+    # # Lets see repr
+    # res = repr(programmer)
+    # print(res)
+    # recover_programmer = eval(res)
+    # print(programmer.position)
