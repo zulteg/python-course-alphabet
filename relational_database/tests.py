@@ -97,8 +97,8 @@ class TestSQLQueries(unittest.TestCase):
             cursor.execute("SELECT * from customers;")
             actual_result = [dict(record) for record in cursor]
             expected_result = self.load_rows_from_file("task_1.json")
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_2(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -106,8 +106,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_2.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_3(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -115,8 +115,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_3.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_4(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -124,8 +124,8 @@ class TestSQLQueries(unittest.TestCase):
             cursor.execute("SELECT * from customers;")
             actual_result = [dict(record) for record in cursor]
             expected_result = self.load_rows_from_file("task_4.json")
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
         self.conn.commit()
 
@@ -135,8 +135,8 @@ class TestSQLQueries(unittest.TestCase):
             cursor.execute("SELECT * from customers;")
             actual_result = [dict(record) for record in cursor]
             expected_result = self.load_rows_from_file("task_5.json")
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
         self.conn.commit()
 
@@ -146,8 +146,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_6.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_7(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -155,8 +155,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_7.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_8(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -164,8 +164,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_8.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_9(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -173,8 +173,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_9.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_10(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -182,8 +182,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_10.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_11(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -191,8 +191,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_11.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_12(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -200,8 +200,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_12.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_13(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -209,8 +209,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_13.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_14(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -218,8 +218,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_14.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_15(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -227,8 +227,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_15.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def test_task_16(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -236,8 +236,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_16.json")
 
-        for i, row in enumerate(actual_result):
-            self.assertDictEqual(row, expected_result[i])
+        for i, row in enumerate(expected_result):
+            self.assertDictEqual(row, actual_result[i])
 
     def load_rows_from_file(self, file_name):
         file = os.path.join(FIXTURES_PATH, "tests_results", file_name)
