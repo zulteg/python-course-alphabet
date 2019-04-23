@@ -48,7 +48,7 @@
 """
 
 
-class Millionaire:
+class Cesar:
     pass
 
 
