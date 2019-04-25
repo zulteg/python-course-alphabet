@@ -198,8 +198,8 @@ def task_12_list_suppliers_from_specified_countries(cur):
     """
     cur.execute("""
         SELECT supplierid, suppliername, contactname, city, country 
-        FROM suppliers WHERE country IN (%s, %s, %s)
-    """, ('USA', 'UK', 'Japan'))
+        FROM suppliers WHERE country IN %s
+    """, (('USA', 'UK', 'Japan'),))
     return cur.fetchall()
 
 
