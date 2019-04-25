@@ -74,7 +74,7 @@ def task_4_update_customer(con):
     with con.cursor() as cursor:
         cursor.execute("""
             UPDATE customers SET customername = %s 
-            WHERE customerid = (SELECT MIN(customerid) FROM customers)
+            WHERE customerid = (SELECT customerid FROM customers ORDER BY customerid ASC LIMIT 1)
         """, ('Johnny Depp',))
         con.commit()
 
@@ -87,7 +87,10 @@ def task_5_delete_the_last_customer(con) -> None:
         con: psycopg connection
     """
     with con.cursor() as cursor:
-        cursor.execute("DELETE FROM customers WHERE customerid = (SELECT MAX(customerid) FROM customers)")
+        cursor.execute("""
+            DELETE FROM customers 
+            WHERE customerid = (SELECT customerid FROM customers ORDER BY customerid DESC LIMIT 1)
+        """)
         con.commit()
 
 
@@ -147,7 +150,7 @@ def task_8_count_customers_by_city(cur):
             case_order_by += " ELSE {}".format(i)
     case_order_by += " END"
 
-    cur.execute("SELECT COUNT(*), city FROM customers GROUP BY city ORDER BY {}".format(case_order_by))
+    cur.execute("SELECT COUNT(customerid), city FROM customers GROUP BY city ORDER BY {}".format(case_order_by))
     return cur.fetchall()
 
 
@@ -160,7 +163,7 @@ def task_9_count_customers_by_country_with_than_10_customers(cur):
 
     Returns: 3 records
     """
-    cur.execute("SELECT COUNT(*), country FROM customers GROUP BY country HAVING COUNT(*) > 10")
+    cur.execute("SELECT COUNT(customerid), country FROM customers GROUP BY country HAVING COUNT(customerid) > 10")
     return cur.fetchall()
 
 
@@ -214,7 +217,7 @@ def task_13_list_products_from_sweden_suppliers(cur):
     """
     cur.execute("""
         SELECT productname FROM products 
-        WHERE supplierid IN (SELECT supplierid FROM suppliers WHERE country = %s)
+        JOIN suppliers ON suppliers.supplierid = products.supplierid AND suppliers.country = %s
     """, ('Sweden',))
     return cur.fetchall()
 
