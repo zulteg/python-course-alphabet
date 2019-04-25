@@ -27,11 +27,11 @@ def task_1_add_new_record_to_db(con) -> None:
         'postalcode': '774',
         'country': 'Singapore',
     }
-    data_fields = ",".join(data.keys())
-    data_values = "'" + "','".join(data.values()) + "'"
-    sql = "INSERT INTO customers ({}) VALUES ({})".format(data_fields, data_values)
     with con.cursor() as cursor:
-        cursor.execute(sql)
+        cursor.execute("""
+            INSERT INTO customers(customername, contactname, address, city, postalcode, country) 
+            VALUES (%(customername)s, %(contactname)s, %(address)s, %(city)s, %(postalcode)s, %(country)s)
+        """, data)
         con.commit()
 
 
@@ -58,7 +58,7 @@ def task_3_list_customers_in_germany(cur) -> list:
 
     Returns: 11 records
     """
-    cur.execute("SELECT * FROM customers WHERE country = '{}'".format('Germany'))
+    cur.execute("SELECT * FROM customers WHERE country = %s", ('Germany',))
     return cur.fetchall()
 
 
@@ -73,9 +73,9 @@ def task_4_update_customer(con):
     """
     with con.cursor() as cursor:
         cursor.execute("""
-            UPDATE customers SET customername = '{}' 
+            UPDATE customers SET customername = %s 
             WHERE customerid = (SELECT MIN(customerid) FROM customers)
-        """.format('Johnny Depp'))
+        """, ('Johnny Depp',))
         con.commit()
 
 
@@ -160,7 +160,7 @@ def task_9_count_customers_by_country_with_than_10_customers(cur):
 
     Returns: 3 records
     """
-    cur.execute("SELECT COUNT(*) as count, country FROM customers GROUP BY country HAVING COUNT(*) > {}".format(10))
+    cur.execute("SELECT COUNT(*), country FROM customers GROUP BY country HAVING COUNT(*) > 10")
     return cur.fetchall()
 
 
@@ -170,7 +170,7 @@ def task_10_list_first_10_customers(cur):
 
     Results: 10 records
     """
-    cur.execute("SELECT * FROM customers LIMIT {}".format(10))
+    cur.execute("SELECT * FROM customers LIMIT 10")
     return cur.fetchall()
 
 
@@ -183,7 +183,7 @@ def task_11_list_customers_starting_from_11th(cur):
 
     Returns: 11 records
     """
-    cur.execute("SELECT * FROM customers OFFSET {}".format(11))
+    cur.execute("SELECT * FROM customers OFFSET 11")
     return cur.fetchall()
 
 
@@ -198,8 +198,8 @@ def task_12_list_suppliers_from_specified_countries(cur):
     """
     cur.execute("""
         SELECT supplierid, suppliername, contactname, city, country 
-        FROM suppliers WHERE country IN ('USA', 'UK', 'Japan')
-    """)
+        FROM suppliers WHERE country IN (%s, %s, %s)
+    """, ('USA', 'UK', 'Japan'))
     return cur.fetchall()
 
 
@@ -214,8 +214,8 @@ def task_13_list_products_from_sweden_suppliers(cur):
     """
     cur.execute("""
         SELECT productname FROM products 
-        WHERE supplierid IN (SELECT supplierid FROM suppliers WHERE country = '{}')
-    """.format('Sweden'))
+        WHERE supplierid IN (SELECT supplierid FROM suppliers WHERE country = %s)
+    """, ('Sweden',))
     return cur.fetchall()
 
 
