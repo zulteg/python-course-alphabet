@@ -1,5 +1,6 @@
 from functools import wraps
 
+
 def my_decorator(func, *args, **kwargs):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -9,8 +10,10 @@ def my_decorator(func, *args, **kwargs):
         if len(args) < 5:
             raise TypeError
         print("Something is happening before the function is called.")
-        func(*new_args, **kwargs)
+        res = func(*new_args, **kwargs)
+        print(res)
         print("Something is happening after the function is called.")
+        return res
     return wrapper
 
 
@@ -22,4 +25,3 @@ def our_awesome_function(*args, **kwargs):
 
 
 our_awesome_function(*range(10))
-
