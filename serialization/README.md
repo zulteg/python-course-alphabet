@@ -11,7 +11,8 @@
 
 https://medium.com/python-pandemonium/json-the-python-way-91aac95d4041
 
-
+Коротке описанння способів збереження конфігів
+https://martin-thoma.com/configuration-files-in-python/
 ## Pickle 
 
     What is the difference from json
@@ -31,12 +32,10 @@ https://habr.com/ru/company/otus/blog/353480/
 
 ## Yaml
 
+    What is it
+    When to use
+    examples
 
-## Toml
-    
-  
-## ini files
+### Useful links
 
-  
-## Protocol Buffer (bonus)
- 
+https://yaml.readthedocs.io/en/latest/install.html
