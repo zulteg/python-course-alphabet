@@ -15,19 +15,33 @@ class Programmer:
         return f"Programmer. Name: {self.name}." \
             f"Lang :{self.language}; Postion: {self.position} developer"
 
-    @classmethod
-    def from_json(cls, data):
-        name = data['name']
-        language = data['language']
-        position = data['position']
-        pr = Programmer(name=name, language=language, position=position)
-        pr.enough_coffee = data.get('enough_coffee', False)
-        return pr
+    # @classmethod
+    # def from_json(cls, data):
+    #     name = data['name']
+    #     language = data['language']
+    #     position = data['position']
+    #     pr = Programmer(name=name, language=language, position=position)
+    #     pr.enough_coffee = data.get('enough_coffee', False)
+    #     return pr
+    #
+    # @staticmethod
+    # def to_json(obj: Programmer):
+    #     data = {"name": obj.name, "language": obj.language, "position": obj.position}
+    #     return data
 
-    @staticmethod
-    def to_json(obj: Programmer):
-        data = {"name": obj.name, "language": obj.language, "position": obj.position}
-        return data
+
+def from_json(data):
+    name = data['name']
+    language = data['language']
+    position = data['position']
+    pr = Programmer(name=name, language=language, position=position)
+    pr.enough_coffee = data.get('enough_coffee', False)
+    return pr
+
+
+def to_json(obj: Programmer):
+    data = {"name": obj.name, "language": obj.language, "position": obj.position}
+    return data
 
 
 if __name__ == "__main__":
@@ -42,23 +56,23 @@ if __name__ == "__main__":
     except TypeError as e:
         print(e)
 
-    # Should work fine. Use custom json decoder
+    # # Should work fine. Use custom json decoder
     try:
-        ser_pr = json.dumps(programmer, default=Programmer.to_json)
+        ser_pr = json.dumps(programmer, default=to_json)
         print(type(ser_pr), ser_pr)
     except TypeError as e:
         print(e)
-
-    # Should not fault. But we will get dict instead of object
-    try:
-        load_pr = json.loads(ser_pr)
-        print(type(load_pr), load_pr)
-    except TypeError as e:
-        print(e)
-
-    # Should works fine. Use custom hook
-    try:
-        load_pr = json.loads(ser_pr, object_hook=Programmer.from_json)
-        print(type(load_pr), load_pr)
-    except TypeError as e:
-        print(e)
+    #
+    # # Should not fault. But we will get dict instead of object
+    # try:
+    #     load_pr = json.loads(ser_pr)
+    #     print(type(load_pr), load_pr)
+    # except TypeError as e:
+    #     print(e)
+    #
+    # # Should works fine. Use custom hook
+    # try:
+    #     load_pr = json.loads(ser_pr, object_hook=Programmer.from_json)
+    #     print(type(load_pr), load_pr)
+    # except TypeError as e:
+    #     print(e)
