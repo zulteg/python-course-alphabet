@@ -41,6 +41,10 @@ if __name__ == "__main__":
     # # Lets save json data with params
     with open("formatted_data.json", 'w') as file:
         json.dump(DATA, file, indent=4)
+
+    with open("formatted_data.json", 'r') as file:
+        restored_data = json.load(file)
+        print(restored_data)
     #
     # # Lets see restored data from string
     restored_data = json.loads(json_formatted_str)

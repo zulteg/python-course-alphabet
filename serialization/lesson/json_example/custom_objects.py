@@ -59,20 +59,23 @@ if __name__ == "__main__":
     # # Should work fine. Use custom json decoder
     try:
         ser_pr = json.dumps(programmer, default=to_json)
+        print("Success")
         print(type(ser_pr), ser_pr)
     except TypeError as e:
         print(e)
     #
     # # Should not fault. But we will get dict instead of object
-    # try:
-    #     load_pr = json.loads(ser_pr)
-    #     print(type(load_pr), load_pr)
-    # except TypeError as e:
-    #     print(e)
+    try:
+        load_pr = json.loads(ser_pr)
+        print(type(load_pr), load_pr)
+    except TypeError as e:
+        print(e)
     #
     # # Should works fine. Use custom hook
-    # try:
-    #     load_pr = json.loads(ser_pr, object_hook=Programmer.from_json)
-    #     print(type(load_pr), load_pr)
-    # except TypeError as e:
-    #     print(e)
+    try:
+        load_pr = json.loads(ser_pr, object_hook=from_json)
+        print("Look here we have our programmer")
+        print(type(load_pr), load_pr)
+        print(load_pr.name)
+    except TypeError as e:
+        print(e)
