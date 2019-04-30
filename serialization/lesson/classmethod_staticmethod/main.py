@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class Programmer:
 
     def __init__(self, name, language="Python", position="Junior") -> None:
@@ -26,10 +27,20 @@ class Programmer:
         data = {"name": obj.name, "language": obj.language, "position": obj.position}
         return data
 
+    def print_name(self):
+        print(self.name)
+
 
 if __name__ == "__main__":
     programmer_info = {"name": "Denis"}
 
     programmer = Programmer.from_json(programmer_info)
 
+    programmer.print_name()
+
+    try:
+        Programmer.print_name()
+    except TypeError as e:
+        print(e)
+    
     print(programmer)
