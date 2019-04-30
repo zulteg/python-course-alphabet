@@ -3,11 +3,14 @@ from __future__ import annotations
 
 class Programmer:
 
+    programmers_count = 0
+
     def __init__(self, name, language="Python", position="Junior") -> None:
         self.name = name
         self.language = language
         self.position = position
         self.enough_coffee = False
+        self.programmers_count = 0
 
     def __str__(self):
         return f"Programmer. Name: {self.name}." \
@@ -15,6 +18,7 @@ class Programmer:
 
     @classmethod
     def from_json(cls, data):
+        cls.programmers_count += 1
         name = data['name']
         language = data.get('language')
         position = data.get('position')
@@ -30,6 +34,10 @@ class Programmer:
     def print_name(self):
         print(self.name)
 
+    @staticmethod
+    def print_hello(name):
+        print(f"Hello {name}")
+
 
 if __name__ == "__main__":
     programmer_info = {"name": "Denis"}
@@ -42,5 +50,9 @@ if __name__ == "__main__":
         Programmer.print_name()
     except TypeError as e:
         print(e)
-    
+
     print(programmer)
+    programmer_2 = Programmer.from_json({"name": "Anton"})
+    print(Programmer.programmers_count)
+
+    Programmer.print_hello()
