@@ -7,6 +7,3 @@ __pycache__
 env
 venv
 virtualenv
-
-.DS_Store
-**/*_for_test.py
