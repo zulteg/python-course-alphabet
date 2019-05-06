@@ -136,7 +136,7 @@ class Cesar:
 class Garage(object):
     def __init__(self, town, places, owner=None, cars=None):
         if town not in TOWNS:
-            raise ValueError("Invalid town value")
+            raise Exception("Invalid town value")
         self.town = town
 
         try:
@@ -234,11 +234,11 @@ class Car:
             raise ValueError("Invalid price value")
 
         if type not in CARS_TYPES:
-            raise ValueError("Invalid type value")
+            raise Exception("Invalid type value")
         self.type = type
 
         if producer not in CARS_PRODUCER:
-            raise ValueError("Invalid producer value")
+            raise Exception("Invalid producer value")
         self.producer = producer
 
         try:
