@@ -25,15 +25,21 @@ from objects_and_classes.homework.constants import CARS_TYPES, CARS_PRODUCER, TO
 
 
 class Cesar:
-    def __init__(self, name=None):
+    def __init__(self, name=None, garages=None):
+        self.register_id = uuid.uuid4()
+
         try:
             name = str(name)
         except ValueError:
             raise ValueError("Invalid name value")
-
         self.name = name
+
         self.garages = {}
-        self.register_id = uuid.uuid4()
+        if garages:
+            if not isinstance(garages, list):
+                raise ValueError("Invalid garages value, must be list of garages")
+            for garage in garages:
+                self.add_garage(garage)
 
     def __str__(self):
         return f"Cesar {self.name} has {self.garages_count()} garages with {self.cars_count()} cars " \
@@ -81,15 +87,15 @@ class Cesar:
                 print("This garage has other owner")
                 return False
 
-        garage.set_owner(self.register_id)
-        garage.add(car)
         self.add_garage(garage)
+        garage.add(car)
 
     def add_garage(self, garage):
         if not isinstance(garage, Garage):
             raise TypeError("Invalid instance of garage")
 
         if garage not in self.garages:
+            garage.set_owner(self.register_id)
             self.garages[garage] = garage
 
     def _get_emptiest_garage(self):
@@ -127,10 +133,8 @@ class Cesar:
 """
 
 
-class Garage:
-    def __init__(self, town, places, owner=None):
-        self.cars = {}
-
+class Garage(object):
+    def __init__(self, town, places, owner=None, cars=None):
         if town not in TOWNS:
             raise ValueError("Invalid town value")
         self.town = town
@@ -145,15 +149,25 @@ class Garage:
         else:
             self.set_owner(owner=owner)
 
+        self.cars = {}
+        if cars:
+            if not isinstance(cars, list):
+                raise ValueError("Invalid cars value, must be list of cars")
+            for car in cars:
+                self.add(car)
+
     def __str__(self):
         return f"This garage is in {self.town}, has {len(self.cars)}/{self.places} places. " \
                f"Car total price: {self.hit_hat()}. It owner: {self.owner}"
 
     def set_owner(self, owner):
-        try:
-            self.owner = uuid.UUID(hex=str(owner))
-        except ValueError:
-            raise ValueError("Invalid owner value")
+        if isinstance(owner, Cesar):
+            self.owner = owner.register_id
+        else:
+            try:
+                self.owner = uuid.UUID(hex=str(owner))
+            except ValueError:
+                raise ValueError("Invalid owner value")
 
     def add(self, car):
         if not isinstance(car, Car):
@@ -209,6 +223,11 @@ class Garage:
 
 class Car:
     def __init__(self, price, type, producer, mileage, number=None):
+        if not number:
+            self.number = uuid.uuid4()
+        else:
+            self.set_number(number=number)
+
         try:
             self.price = float(price)
         except ValueError:
@@ -226,11 +245,6 @@ class Car:
             self.mileage = float(mileage)
         except ValueError:
             raise ValueError("Invalid mileage value")
-
-        if not number:
-            self.number = uuid.uuid4()
-        else:
-            self.set_number(number=number)
 
     def __str__(self):
         return f"This car {self.type} type has {self.mileage} mileage and produced by {self.producer}. " \
