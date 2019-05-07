@@ -133,7 +133,7 @@ class Cesar:
 """
 
 
-class Garage(object):
+class Garage:
     def __init__(self, town, places, owner=None, cars=None):
         if town not in TOWNS:
             raise Exception("Invalid town value")
@@ -222,7 +222,7 @@ class Garage(object):
 
 
 class Car:
-    def __init__(self, price, type, producer, mileage, number=None):
+    def __init__(self, price, car_type, producer, mileage, number=None):
         if not number:
             self.number = uuid.uuid4()
         else:
@@ -233,9 +233,9 @@ class Car:
         except ValueError:
             raise ValueError("Invalid price value")
 
-        if type not in CARS_TYPES:
+        if car_type not in CARS_TYPES:
             raise Exception("Invalid type value")
-        self.type = type
+        self.car_type = car_type
 
         if producer not in CARS_PRODUCER:
             raise Exception("Invalid producer value")
@@ -247,11 +247,11 @@ class Car:
             raise ValueError("Invalid mileage value")
 
     def __str__(self):
-        return f"This car {self.type} type has {self.mileage} mileage and produced by {self.producer}. " \
+        return f"This car {self.car_type} type has {self.mileage} mileage and produced by {self.producer}. " \
                f"It price ${self.price}. Car number: {self.number}"
 
     def __repr__(self):
-        return f"Car(price={self.price}, type='{self.type}', producer='{self.producer}', mileage={self.mileage}, " \
+        return f"Car(price={self.price}, type='{self.car_type}', producer='{self.producer}', mileage={self.mileage}, " \
                f"number='{self.number}')"
 
     def __lt__(self, other):
