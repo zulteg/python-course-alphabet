@@ -18,8 +18,7 @@ class Cat:
 
     * Add to class saturation_level variable with value 50
 
-    * Implement private methods _increase_saturation_level
-    and _reduce_saturation_level
+    * Implement private methods _increase_saturation_level and _reduce_saturation_level
       that will receive value and add/subtract from saturation_level this value
       if saturation_level is less than 0, return 0
       if saturation_level is grosser than 100, return 100
@@ -36,15 +35,11 @@ class Cat:
 
     * Implement method run it receives hours value
       Calculate run km per hours remember that you have average_speed value
-      if your cat run more or eq than 25 _reduce_saturation_level with value 2
-      if it runs between 25(not including) and 50(including)
-        than _reduce_saturation_level with value 5
-      if it runs between 50(not including) and 100(including)
-        than _reduce_saturation_level with value 15
-      if it runs between 100(not including) and 200(including)
-        than _reduce_saturation_level with value 25
-      if it runs more than 200(not including)
-        than _reduce_saturation_level with value 50
+      Than if your cat run more or eq than 25 _reduce_saturation_level with value 2
+      if it runs between 25(not including) and 50(including) than _reduce_saturation_level with value 5
+      if it runs between 50(not including) and 100(including) than _reduce_saturation_level with value 15
+      if it runs between 100(not including) and 200(including) than _reduce_saturation_level with value 25
+      if it runs more than 200(not including) than _reduce_saturation_level with value 50
 
       return text like this: f"Your cat ran {ran_km} kilometers"
 
@@ -113,10 +108,8 @@ class Cheetah(Cat):
     * Inherit from class Cat
 
     * Redefine method eat from parent class it will receive product value
-      if product eq gazelle
-      use _increase_saturation_level from parent class with value 30
-      if product eq rabbit
-      use _increase_saturation_level from parent class with value 15
+      if product eq gazelle use _increase_saturation_level from parent class with value 30
+      if product eq rabbit use _increase_saturation_level from parent class with value 15
 
     * Redefine method _set_average_speed
       if age less or eq 5 return 90
@@ -146,20 +139,15 @@ class Wall:
     """
     * Implement class Wall which receives such parameters: width and height
 
-    * Implement method wall_square
-      which return result of simple square formula of rectangle
+    * Implement method wall_square which return result of simple square formula of rectangle
 
-    * Implement method number_of_rolls_of_wallpaper
-      which receives such parameters: roll_width_m, roll_length_m
-      (_m in the parameters name means meters)
-      return number of rolls of wallpaper
+    * Implement method number_of_rolls_of_wallpaper which receives such parameters: roll_width_m, roll_length_m
+      (_m in the parameters name means meters) return number of rolls of wallpaper
 
       Example:
-          count of lines in roll eq roll length in meters
-            divide height of the wall (use rounding down)
+          count of lines in roll eq roll length in meters divide height of the wall (use rounding down)
           count of lines eq width of the wall divide roll width in meters
-          number of rolls of wallpaper eq count of lines
-            divide  count of lines in roll
+          number of rolls of wallpaper eq count of lines divide  count of lines in roll
     """
 
     def __init__(self, width: float, height: float):
@@ -179,16 +167,13 @@ class Wall:
 
 class Roof:
     """
-        * Implement class Roof which receives such parameters:
-          width, height and roof_type
+        * Implement class Roof which receives such parameters: width, height and roof_type
 
         * Implement method roof_square that returns square of the roof
-          if roof_type eq "gable" the roof square
-            if simple rectangle square formula multiplied 2
-          if roof_type eq "single-pitch" the roof square
-            if simple rectangle square formula
-          if other roof_type raise ValueError like this
-            "Sorry there is only two types of roofs"
+          if roof_type eq "gable" the roof square if simple rectangle square formula multiplied 2
+          if roof_type eq "single-pitch" the roof square if simple rectangle square formula
+          if other roof_type raise ValueError like this "Sorry there is only two types of roofs"
+
     """
 
     def __init__(self, width: float, height: float, roof_type: str):
@@ -228,21 +213,17 @@ class Door:
      * Implement class Door which receives such parameters: width and height
       add variables wood_price eq 10, metal_price eq 3
 
-     * Implement method door_square which
-       return result of simple square formula of rectangle
+     * Implement method door_square which return result of simple square formula of rectangle
 
-     * Implement method door_square
-       which receives material value as a parameter
+     * Implement method door_square which receives material value as a parameter
        if material eq wood return door_square multiplied on wood_price
        if material eq metal return door_square multiplied on metal_price
-       if material value is another one (not metal or wood)
-         raise ValueError "Sorry we don't have such material"
+       if material value is another one (not metal or wood) raise ValueError "Sorry we don't have such material"
 
-     * Implement method update_wood_price
-       which receives new_price value and updates your old price
+     *  Implement method update_wood_price which receives new_price value and updates your old price
 
-     * Implement method update_metal_price
-       which receives new_price value and updates your old price
+     *  Implement method update_metal_price which receives new_price value and updates your old price
+
     """
 
     def __init__(self, width: float, height: float):
@@ -272,34 +253,29 @@ class Door:
 
 class House:
     """
-    !!! DON'T WRITE NEW METHODS TO THIS CLASS EXCEPT FOR THOSE LISTED BELOW !!!
+    !!!! DON'T WRITE NEW METHODS TO THIS CLASS EXCEPT FOR THOSE LISTED BELOW !!!
 
     * Add super private variable __walls and its value will be empty list
     * Add super private variable __windows and its value will be empty list
     * Add super private variable __roof and its value will be None
     * Add super private variable __door and its value will be None
 
-    * Implement method create_wall which will create new wall
-      using class Wall and add it to the __walls list
+    * Implement method create_wall which will create new wall using class Wall and add it to the __walls list
       it receives parameters width and height
       if width or height eq 0 raise ValueError "Value must be not 0"
-      if user have more than 4 walls
-        raise ValueError "Our house can not have more than 4 walls"
+      if user have more than 4 walls raise ValueError "Our house can not have more than 4 walls"
 
-    * Implement method create_roof which will create new roof
-      using class Roof and assign it to the __roof variable
+    * Implement method create_roof which will create new roof using class Roof and assign it to the __roof variable
       it receives parameters width, height and roof_type
       if width or height eq 0 raise ValueError "Value must be not 0"
       Check that we won't have another roof if we already have another one,
               otherwise raise ValueError "The house can not have two roofs"
 
-    * Implement method create_window which will create new window
-      using class Window and add it to the __windows list
+    * Implement method create_window which will create new window using class Window and add it to the __windows list
       it receives parameters width and height
       if width or height eq 0 raise ValueError "Value must be not 0"
 
-    * Implement method create_door which will create new door
-      using class Door and assign it to the __door variable
+    * Implement method create_door which will create new door using class Door and assign it to the __door variable
       it receives parameters width and height
       if width or height eq 0 raise ValueError "Value must be not 0"
       Check that we won't have another door if we already have another one,
@@ -309,34 +285,28 @@ class House:
 
     * Implement method get_count_of_windows that returns count of windows
 
-    * Implement method get_door_price that receives material value
-      and returns price of the door
+    * Implement method get_door_price that receives material value and returns price of the door
 
-    * Implement method update_wood_price that receives new_wood_price
-      and updates old one
+    * Implement method update_wood_price that receives new_wood_price and updates old one
 
-    * Implement method update_metal_price that receives new_metal_price
-      and updates old one
+    * Implement method update_metal_price that receives new_metal_price and updates old one
 
     * Implement method get_roof_square that returns the roof square
 
-    * Implement method get_walls_square
-      that returns sum of all walls square that we have
+    * Implement method get_walls_square that returns sum of all walls square that we have
 
-    * Implement method get_windows_square
-      that returns sum of all windows square that we have
+    * Implement method get_windows_square that returns sum of all windows square that we have
 
     * Implement method get_door_square that returns the square of the door
 
-    * Implement method get_number_of_rolls_of_wallpapers
-      that returns sum of the number of rolls of wallpapers
+    * Implement method get_number_of_rolls_of_wallpapers that returns sum of the number of rolls of wallpapers
       needed for all our walls
       it receives roll_width_m, roll_length_m parameters
-      Check if roll_width_m or roll_length_m eq 0
-      raise ValueError "Sorry length must be not 0"
+      Check if roll_width_m or roll_length_m eq 0 raise ValueError "Sorry length must be not 0"
 
     * Implement method get_room_square that returns the square of our room
       (from walls_square divide windows and door square)
+
     """
 
     __walls: List[Wall]
@@ -410,11 +380,7 @@ class House:
                                           roll_length_m: float):
         validate_params(roll_width_m, roll_length_m)
 
-        return sum([
-            wall.number_of_rolls_of_wallpaper(
-                roll_width_m, roll_length_m
-            ) for wall in self.__walls
-        ])
+        return sum([wall.number_of_rolls_of_wallpaper(roll_width_m, roll_length_m) for wall in self.__walls])
 
     def get_room_square(self):
         return self.get_walls_square() - self.get_windows_square() \
