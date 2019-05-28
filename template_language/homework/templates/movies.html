@@ -1,23 +1,23 @@
 {% extends "layout.html" %}
 
-{% block title %}Movies{% endblock %}
+{% block title %}title{% endblock %}
 
 {% block content %}
     <h1 class="my-5 py-5 text-center">Movies list</h1>
     <div class="row">
-        {% for movie in movies if check_movie(movie) %}
+        {% for movie in movies if movie.year | int >= min_year %}
             <div class="col-sm-6">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-lg-4">
-                            <a href="/{{ movie.title }}">
+                            <a href="{{ url_for('movie_page', title=movie.title) }}">
                                 <img src="{{ movie.poster }}" class="card-img" alt="{{ movie.title }}">
                             </a>
                         </div>
                         <div class="col-lg-8">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="/{{ movie.title }}">{{ movie.title }}</a>
+                                    <a href="{{ url_for('movie_page', title=movie.title) }}">{{ movie.title }}</a>
                                 </h5>
                                 <p class="card-text">
                                     {{ movie.plot }}
