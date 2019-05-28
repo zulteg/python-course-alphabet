@@ -3,9 +3,17 @@ import json
 from flask import Flask, render_template
 
 app = Flask(__name__)
+MIN_YEAR = 2010
 
 with open('movies.json') as f:
     MOVIES = json.load(f)
+
+
+def check_movie(movie):
+    return int(movie.get('year')) >= MIN_YEAR
+
+
+app.jinja_env.globals.update(check_movie=check_movie)
 
 
 @app.route('/')
