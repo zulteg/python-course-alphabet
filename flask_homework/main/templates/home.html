@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <h1 class="display-4">Hello!</h1>
+    <img width="400px" src="{{ url_for('static', filename='logo.png') }}" />
+    </div>
+{% endblock %}
