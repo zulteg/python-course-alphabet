@@ -110,3 +110,5 @@ https://regex101.com/
 https://www.rexegg.com/regex-quickstart.html
 https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference
 
+Кросворд regex для тренування і фану
+https://regexcrossword.com/
