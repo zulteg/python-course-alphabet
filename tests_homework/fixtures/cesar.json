@@ -1,0 +1,58 @@
+{
+    "name": "John",
+    "register_id": "e1fa7392-99b7-41bf-af9d-02d2d972c411",
+    "garages": [
+        {
+            "number": "5542b5d0-2345-4ff2-931f-df12e1ff69bb",
+            "town": "Kiev",
+            "places": 2,
+            "owner": "e1fa7392-99b7-41bf-af9d-02d2d972c411",
+            "cars": [
+                {
+                    "number": "d2237b1e-3511-44e4-8911-7eb1221d3d13",
+                    "price": 37328.74935237346,
+                    "car_type": "Luxury Car",
+                    "producer": "Lamborghini",
+                    "mileage": 3161.411797384241
+                },
+                {
+                    "number": "19ac985b-f827-4b00-9375-59d42154245a",
+                    "price": 38641.35450520609,
+                    "car_type": "Coupe",
+                    "producer": "Dodge",
+                    "mileage": 1810.4809830191725
+                }
+            ]
+        },
+        {
+            "number": "4cad2955-7b2a-4764-b23d-5e447e2ba25e",
+            "town": "Amsterdam",
+            "places": 3,
+            "owner": "e1fa7392-99b7-41bf-af9d-02d2d972c411",
+            "cars": [
+                {
+                    "number": "37581101-74c4-467f-8551-f00551eb8020",
+                    "price": 17352.953653834586,
+                    "car_type": "Van",
+                    "producer": "Chevrolet",
+                    "mileage": 3934.353689023649
+                }
+            ]
+        },
+        {
+            "number": "8f65aa4d-8bd5-4160-8afa-e2465548bf37",
+            "town": "Kiev",
+            "places": 4,
+            "owner": "e1fa7392-99b7-41bf-af9d-02d2d972c411",
+            "cars": [
+                {
+                    "number": "66e06318-c0b3-4479-921a-b6a3705e7c10",
+                    "price": 31217.262307776517,
+                    "car_type": "Crossover",
+                    "producer": "BENTLEY",
+                    "mileage": 4511.957525479263
+                }
+            ]
+        }
+    ]
+}
