@@ -54,10 +54,10 @@ class CarCases(unittest.TestCase):
         car2 = Car(2000.0, rnd_car_type(), rnd_car_producer(), rnd_float())
         car3 = Car(1000.0, rnd_car_type(), rnd_car_producer(), rnd_float())
 
-        self.assertFalse(car1 > car2)
-        self.assertTrue(car1 >= car3)
-        self.assertTrue(car1 < car2)
-        self.assertTrue(car1 <= car3)
+        self.assertGreater(car2, car1)
+        self.assertGreaterEqual(car1, car3)
+        self.assertLess(car1, car2)
+        self.assertLessEqual(car1, car3)
 
     def test_json_serialize(self):
         filename = 'car.json'
@@ -467,10 +467,10 @@ class CesarCases(unittest.TestCase):
         garage1 = Garage(rnd_town(), rnd_int(), rnd_uuid(), [car1, car2])
         cesar3 = Cesar(rnd_name(), [garage1])
 
-        self.assertFalse(cesar1 > cesar2)
-        self.assertTrue(cesar1 >= cesar3)
-        self.assertTrue(cesar1 < cesar2)
-        self.assertTrue(cesar1 <= cesar3)
+        self.assertGreater(cesar2, cesar1)
+        self.assertGreaterEqual(cesar1, cesar3)
+        self.assertLess(cesar1, cesar2)
+        self.assertLessEqual(cesar1, cesar3)
 
     def test_yaml_serialize(self):
         filename = 'cesar.yaml'
