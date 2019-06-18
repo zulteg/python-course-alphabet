@@ -5,6 +5,7 @@ import yaml
 import pickle
 from tests_homework.models import InvalidValueException, Cesar, Garage, Car
 from tests_homework.utils import (
+    get_dump_path,
     rnd_car_producer,
     rnd_car_type,
     rnd_town,
@@ -64,7 +65,7 @@ class CarCases(unittest.TestCase):
 
         car_from_json = Car.from_json_file(filename)
 
-        with open(f"fixtures/{filename}") as f:
+        with open(get_dump_path(filename)) as f:
             car_json = json.loads(f.read())
             car = Car(
                 price=car_json.get('price'),
@@ -86,6 +87,15 @@ class CarCases(unittest.TestCase):
         car1 = Car(price, car_type, car_producer, mileage, number)
         car2 = Car(price, car_type, car_producer, mileage, number)
         self.assertEqual(car1, car2)
+
+    def test_not_equal_method(self):
+        price = rnd_float()
+        car_type = rnd_car_type()
+        car_producer = rnd_car_producer()
+        mileage = rnd_float()
+        number = rnd_uuid()
+
+        car1 = Car(price, car_type, car_producer, mileage, number)
 
         car2 = Car(price + 1, car_type, car_producer, mileage, number)
         self.assertNotEqual(car1, car2)
@@ -262,7 +272,7 @@ class GarageCases(unittest.TestCase):
 
         garage_from_pickle = Garage.from_pickle_file(filename)
 
-        with open(f"fixtures/{filename}", "rb") as f:
+        with open(get_dump_path(filename), "rb") as f:
             garage = pickle.loads(f.read())
 
         self.assertEqual(garage, garage_from_pickle)
@@ -282,6 +292,20 @@ class GarageCases(unittest.TestCase):
         garage1 = Garage(town, places, owner, cars, number)
         garage2 = Garage(town, places, owner, cars, number)
         self.assertEqual(garage1, garage2)
+
+    def test_not_equal_method(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+
+        town = rnd_town()
+        places = rnd_int()
+        owner = rnd_uuid()
+        cars = [car1, car2]
+        number = rnd_uuid()
+
+        garage1 = Garage(town, places, owner, cars, number)
 
         garage2 = Garage(rnd_town(town), places, owner, cars, number)
         self.assertNotEqual(garage1, garage2)
@@ -477,7 +501,7 @@ class CesarCases(unittest.TestCase):
 
         cesar_from_yaml = Cesar.from_yaml_file(filename)
 
-        with open(f"fixtures/{filename}") as f:
+        with open(get_dump_path(filename)) as f:
             cesar_json = yaml.load(f.read(), Loader=yaml.FullLoader)
 
         garages = []
@@ -525,6 +549,22 @@ class CesarCases(unittest.TestCase):
         cesar1 = Cesar(name, garages, register_id)
         cesar2 = Cesar(name, garages, register_id)
         self.assertEqual(cesar1, cesar2)
+
+    def test_not_equal_method(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car3 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        garage1 = Garage(rnd_town(), rnd_int(), None, [car1, car2])
+        garage2 = Garage(rnd_town(), rnd_int(), None, [car3])
+
+        name = rnd_name()
+        garages = [garage1, garage2]
+        register_id = rnd_uuid()
+
+        cesar1 = Cesar(name, garages, register_id)
 
         cesar2 = Cesar(rnd_name(name), garages, register_id)
         self.assertNotEqual(cesar1, cesar2)

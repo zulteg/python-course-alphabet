@@ -7,7 +7,7 @@ from tests_homework.constants import CARS_TYPES, CARS_PRODUCER, TOWNS, NAMES
 def get_dump_path(file_name, base_path='fixtures'):
     if not os.path.isdir(base_path):
         os.mkdir(base_path)
-    return os.path.join(base_path, file_name)
+    return os.path.join(os.path.dirname(__file__), base_path, file_name)
 
 
 def separator():
