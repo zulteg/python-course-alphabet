@@ -88,7 +88,7 @@ class CarCases(unittest.TestCase):
         car2 = Car(price, car_type, car_producer, mileage, number)
         self.assertEqual(car1, car2)
 
-    def test_not_equal_method(self):
+    def test_not_equal_price(self):
         price = rnd_float()
         car_type = rnd_car_type()
         car_producer = rnd_car_producer()
@@ -96,21 +96,52 @@ class CarCases(unittest.TestCase):
         number = rnd_uuid()
 
         car1 = Car(price, car_type, car_producer, mileage, number)
-
         car2 = Car(price + 1, car_type, car_producer, mileage, number)
         self.assertNotEqual(car1, car2)
 
+    def test_not_equal_car_type(self):
+        price = rnd_float()
+        car_type = rnd_car_type()
+        car_producer = rnd_car_producer()
+        mileage = rnd_float()
+        number = rnd_uuid()
+
+        car1 = Car(price, car_type, car_producer, mileage, number)
         car2 = Car(price, rnd_car_type(car_type), car_producer, mileage,
                    number)
         self.assertNotEqual(car1, car2)
 
+    def test_not_equal_producer(self):
+        price = rnd_float()
+        car_type = rnd_car_type()
+        car_producer = rnd_car_producer()
+        mileage = rnd_float()
+        number = rnd_uuid()
+
+        car1 = Car(price, car_type, car_producer, mileage, number)
         car2 = Car(price, car_type, rnd_car_producer(car_producer), mileage,
                    number)
         self.assertNotEqual(car1, car2)
 
+    def test_not_equal_mileage(self):
+        price = rnd_float()
+        car_type = rnd_car_type()
+        car_producer = rnd_car_producer()
+        mileage = rnd_float()
+        number = rnd_uuid()
+
+        car1 = Car(price, car_type, car_producer, mileage, number)
         car2 = Car(price, car_type, car_producer, mileage + 1, number)
         self.assertNotEqual(car1, car2)
 
+    def test_not_equal_number(self):
+        price = rnd_float()
+        car_type = rnd_car_type()
+        car_producer = rnd_car_producer()
+        mileage = rnd_float()
+        number = rnd_uuid()
+
+        car1 = Car(price, car_type, car_producer, mileage, number)
         car2 = Car(price, car_type, car_producer, mileage, rnd_uuid())
         self.assertNotEqual(car1, car2)
 
@@ -293,7 +324,7 @@ class GarageCases(unittest.TestCase):
         garage2 = Garage(town, places, owner, cars, number)
         self.assertEqual(garage1, garage2)
 
-    def test_not_equal_method(self):
+    def test_not_equal_town(self):
         car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
                    rnd_float())
         car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
@@ -306,19 +337,70 @@ class GarageCases(unittest.TestCase):
         number = rnd_uuid()
 
         garage1 = Garage(town, places, owner, cars, number)
-
         garage2 = Garage(rnd_town(town), places, owner, cars, number)
         self.assertNotEqual(garage1, garage2)
 
+    def test_not_equal_places(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+
+        town = rnd_town()
+        places = rnd_int()
+        owner = rnd_uuid()
+        cars = [car1, car2]
+        number = rnd_uuid()
+
+        garage1 = Garage(town, places, owner, cars, number)
         garage2 = Garage(town, places + 1, owner, cars, number)
         self.assertNotEqual(garage1, garage2)
 
+    def test_not_equal_owner(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+
+        town = rnd_town()
+        places = rnd_int()
+        owner = rnd_uuid()
+        cars = [car1, car2]
+        number = rnd_uuid()
+
+        garage1 = Garage(town, places, owner, cars, number)
         garage2 = Garage(town, places, rnd_uuid(), cars, number)
         self.assertNotEqual(garage1, garage2)
 
+    def test_not_equal_cars(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+
+        town = rnd_town()
+        places = rnd_int()
+        owner = rnd_uuid()
+        cars = [car1, car2]
+        number = rnd_uuid()
+
+        garage1 = Garage(town, places, owner, cars, number)
         garage2 = Garage(town, places, owner, [car1], number)
         self.assertNotEqual(garage1, garage2)
 
+    def test_not_equal_number(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+
+        town = rnd_town()
+        places = rnd_int()
+        owner = rnd_uuid()
+        cars = [car1, car2]
+        number = rnd_uuid()
+
+        garage1 = Garage(town, places, owner, cars, number)
         garage2 = Garage(town, places, owner, cars, rnd_uuid())
         self.assertNotEqual(garage1, garage2)
 
@@ -550,7 +632,43 @@ class CesarCases(unittest.TestCase):
         cesar2 = Cesar(name, garages, register_id)
         self.assertEqual(cesar1, cesar2)
 
-    def test_not_equal_method(self):
+    def test_not_equal_name(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car3 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        garage1 = Garage(rnd_town(), rnd_int(), None, [car1, car2])
+        garage2 = Garage(rnd_town(), rnd_int(), None, [car3])
+
+        name = rnd_name()
+        garages = [garage1, garage2]
+        register_id = rnd_uuid()
+
+        cesar1 = Cesar(name, garages, register_id)
+        cesar2 = Cesar(rnd_name(name), garages, register_id)
+        self.assertNotEqual(cesar1, cesar2)
+
+    def test_not_equal_register_id(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car3 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        garage1 = Garage(rnd_town(), rnd_int(), None, [car1, car2])
+        garage2 = Garage(rnd_town(), rnd_int(), None, [car3])
+
+        name = rnd_name()
+        garages = [garage1, garage2]
+        register_id = rnd_uuid()
+
+        cesar1 = Cesar(name, garages, register_id)
+        cesar2 = Cesar(name, garages, rnd_uuid())
+        self.assertNotEqual(cesar1, cesar2)
+
+    def test_not_equal_garage_cars(self):
         car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
                    rnd_float())
         car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
@@ -566,21 +684,33 @@ class CesarCases(unittest.TestCase):
 
         cesar1 = Cesar(name, garages, register_id)
 
-        cesar2 = Cesar(rnd_name(name), garages, register_id)
-        self.assertNotEqual(cesar1, cesar2)
-
-        cesar2 = Cesar(name, garages, rnd_uuid())
-        self.assertNotEqual(cesar1, cesar2)
-
         garage3 = Garage(rnd_town(), rnd_int(), None)
         car4 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
                    rnd_float())
+
         cesar2 = Cesar(name, garages, register_id)
         cesar2.add_car(car4, garage3)
         self.assertNotEqual(cesar1, cesar2)
 
+    def test_not_equal_garages(self):
+        car1 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car2 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        car3 = Car(rnd_float(), rnd_car_type(), rnd_car_producer(),
+                   rnd_float())
+        garage1 = Garage(rnd_town(), rnd_int(), None, [car1, car2])
+        garage2 = Garage(rnd_town(), rnd_int(), None, [car3])
+
+        name = rnd_name()
+        garages = [garage1, garage2]
+        register_id = rnd_uuid()
+
+        cesar1 = Cesar(name, garages, register_id)
+
         garage3 = Garage(rnd_town(), rnd_int(), rnd_uuid())
         new_garages = [garage3]
+
         cesar2 = Cesar(name, new_garages, register_id)
         self.assertNotEqual(cesar1, cesar2)
 
