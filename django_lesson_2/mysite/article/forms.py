@@ -3,11 +3,11 @@ from article.models import Article
 
 
 class ArticleForm(forms.ModelForm):
-    # title = forms.CharField(required=True)
+    author = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = ('title', 'description', 'author')
         labels = {
             'title': 'Custom Title',
         }

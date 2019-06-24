@@ -2,6 +2,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from django.urls import reverse
 from .models import Article
 from .forms import ArticleForm
+from account.models import Profile
 
 
 class IndexView(ListView):
@@ -23,8 +24,20 @@ class ArticleCreateView(CreateView):
     template_name = 'article/create.html'
     form_class = ArticleForm
 
+    def form_valid(self, form):
+        profile = Profile.objects.get(user=self.request.user)
+        print(profile)
+        form.author = profile.id
+        form.save()
+        # article = form.save(commit=False)
+        # profile = Profile.objects.get(user=self.request.user)
+        # print(profile)
+        # article.author = profile
+        # article.save()
+        return super().form_valid(form)
+
     def get_success_url(self):
-        return reverse('detail', args=(self.object.id))
+        return reverse('detail', args=(self.object.id,))
 
 
 class ArticleDetailView(DetailView):
