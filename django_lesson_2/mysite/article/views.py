@@ -26,15 +26,8 @@ class ArticleCreateView(CreateView):
 
     def form_valid(self, form):
         profile = Profile.objects.get(user=self.request.user)
-        print(profile)
-        form.author = profile.id
-        form.save()
-        # article = form.save(commit=False)
-        # profile = Profile.objects.get(user=self.request.user)
-        # print(profile)
-        # article.author = profile
-        # article.save()
-        return super().form_valid(form)
+        form.instance.author = profile
+        return super(ArticleCreateView, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('detail', args=(self.object.id,))
