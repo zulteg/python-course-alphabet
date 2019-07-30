@@ -19,7 +19,7 @@ def deposit(balance, lock):
 def perform_transactions():
     balance = multiprocessing.Value('i', 100)
 
-    lock = multiprocessing.Lock()
+
 
     p1 = multiprocessing.Process(target=withdraw, args=(balance, lock))
     p2 = multiprocessing.Process(target=deposit, args=(balance, lock))

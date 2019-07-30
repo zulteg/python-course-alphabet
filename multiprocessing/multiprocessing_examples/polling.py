@@ -8,9 +8,9 @@ def square(n):
 
 
 if __name__ == "__main__":
-    my_list = [1, 2, 3, 4, 5]
+    my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-    p = multiprocessing.Pool()
+    p = multiprocessing.Pool(4)
 
     result = p.map(square, my_list)
 
